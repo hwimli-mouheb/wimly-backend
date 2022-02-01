@@ -29,7 +29,7 @@ app.post('/upload', (req, res)=>{
     
     const file = req.files.file; 
     //const data =req.data;
-    file.mv(`${__dirname}/uploads/${file.name.replace(/\s/g,'')}`,err=>{
+    file.mv(`${__dirname}/${file.name.replace(/\s/g,'')}`,err=>{
 
         if(err){
 console.error(err); 
@@ -52,7 +52,7 @@ email:  ${req.body.email} \n
 phone:  ${req.body.phone} \n
 message: ${req.body.messageField}\n`,
 attachments: [
-    { filename: file.name.replace(/\s/g,'') , path: `uploads/${file.name.replace(/\s/g,'')}`}
+    { filename: file.name.replace(/\s/g,'') , path: `/${file.name.replace(/\s/g,'')}`}
 ]
 }
 transporter.sendMail(mailOptions,async (err,data)=>{
@@ -60,7 +60,7 @@ if(err){
  console.log('Error occurs');
 }else{
  console.log('email sent!!');
- fs.unlinkSync(`./uploads/${file.name.replace(/\s/g,'')}`);
+ fs.unlinkSync(`./${file.name.replace(/\s/g,'')}`);
 }
 
 })
