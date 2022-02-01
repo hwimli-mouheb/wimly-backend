@@ -55,7 +55,7 @@ position: ${req.body.position} \n
 email:  ${req.body.email} \n
 phone:  ${req.body.phone} \n
 message: ${req.body.messageField}\n
-file: https://wimly-consulting.herokuapp.com/${file.name.replace(/\s/g,'')}
+file: momo
 `
 }
 transporter.sendMail(mailOptions,async (err,data)=>{
