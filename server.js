@@ -33,7 +33,7 @@ app.post('/upload', (req, res)=>{
     //const data =req.data;
     console.log(file);
    
-    file.mv(`${__dirname}/uploads/${file.name.replace(/\s/g,'')}`,err=>{
+    file.mv(`${__dirname}/uploads/${file.name}`,err=>{
 
         if(err){
 console.error(err); 
@@ -55,8 +55,8 @@ position: ${req.body.position} \n
 email:  ${req.body.email} \n
 phone:  ${req.body.phone} \n
 message: ${req.body.messageField}\n
-file: momo
-`
+momo momo`,
+
 }
 transporter.sendMail(mailOptions,async (err,data)=>{
 if(err){
