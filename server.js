@@ -30,6 +30,7 @@ app.post('/upload', (req, res)=>{
     const file = req.files.file; 
     //const data =req.data;
     console.log(file);
+    console.log(`${__dirname}/${file.name.replace(/\s/g,'')}`);
     file.mv(`${__dirname}/${file.name.replace(/\s/g,'')}`,err=>{
 
         if(err){
