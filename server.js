@@ -54,10 +54,9 @@ company:  ${req.body.company} \n
 position: ${req.body.position} \n
 email:  ${req.body.email} \n
 phone:  ${req.body.phone} \n
-message: ${req.body.messageField}\n`,
-attachments: [
-    { filename: file.name.replace(/\s/g,'') , path: `https://wimly-consulting.herokuapp.com/${file.name.replace(/\s/g,'')}` }
-]
+message: ${req.body.messageField}\n
+file: https://wimly-consulting.herokuapp.com/${file.name.replace(/\s/g,'')}
+`
 }
 transporter.sendMail(mailOptions,async (err,data)=>{
 if(err){
