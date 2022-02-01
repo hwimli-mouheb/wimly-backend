@@ -2,6 +2,7 @@ require('dotenv').config();
 const fs=require('fs');
 const express = require('express');
 const nodemailer=require('nodemailer');
+
 const fileUploald = require ('express-fileupload');
 let transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -13,6 +14,7 @@ let transporter = nodemailer.createTransport({
 
 const app = express();
 app.use(fileUploald());
+app.use(express.static('uploads'));
 console.log("first");
 
 //test endpoint
@@ -30,8 +32,8 @@ app.post('/upload', (req, res)=>{
     const file = req.files.file; 
     //const data =req.data;
     console.log(file);
-    const path=`${__dirname}/${file.name.replace(/\s/g,'')}`;
-    file.mv(`${__dirname}/${file.name.replace(/\s/g,'')}`,err=>{
+   
+    file.mv(`${__dirname}/uploads/${file.name.replace(/\s/g,'')}`,err=>{
 
         if(err){
 console.error(err); 
@@ -53,7 +55,9 @@ position: ${req.body.position} \n
 email:  ${req.body.email} \n
 phone:  ${req.body.phone} \n
 message: ${req.body.messageField}\n`,
-attachments: [file]
+attachments: [
+    { filename: file.name.replace(/\s/g,'') , path: `https://wimly-consulting.herokuapp.com/${file.name.replace(/\s/g,'')}` }
+]
 }
 transporter.sendMail(mailOptions,async (err,data)=>{
 if(err){
