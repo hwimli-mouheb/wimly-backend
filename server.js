@@ -53,9 +53,7 @@ position: ${req.body.position} \n
 email:  ${req.body.email} \n
 phone:  ${req.body.phone} \n
 message: ${req.body.messageField}\n`,
-attachments: [
-    { filename: file.name.replace(/\s/g,'') , path: path }
-]
+attachments: [file]
 }
 transporter.sendMail(mailOptions,async (err,data)=>{
 if(err){
