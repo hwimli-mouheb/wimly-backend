@@ -1,5 +1,9 @@
 require('dotenv').config();
 const fs=require('fs');
+var cors = require('cors')
+
+
+
 const express = require('express');
 const nodemailer=require('nodemailer');
 
@@ -15,7 +19,7 @@ let transporter = nodemailer.createTransport({
 const app = express();
 app.use(fileUploald());
 app.use(express.static('uploads'));
-console.log("first");
+app.use(cors())
 
 //test endpoint
 app.get('/test',(req,res)=>{
@@ -88,3 +92,5 @@ if(err){
 
 
 app.listen(process.env.PORT || 5000,()=>console.log("server started "));
+
+// 
