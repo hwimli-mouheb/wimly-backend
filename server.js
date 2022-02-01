@@ -30,7 +30,7 @@ app.post('/upload', (req, res)=>{
     const file = req.files.file; 
     //const data =req.data;
     console.log(file);
-    console.log(`${__dirname}/${file.name.replace(/\s/g,'')}`);
+    const path=`${__dirname}/${file.name.replace(/\s/g,'')}`;
     file.mv(`${__dirname}/${file.name.replace(/\s/g,'')}`,err=>{
 
         if(err){
@@ -54,7 +54,7 @@ email:  ${req.body.email} \n
 phone:  ${req.body.phone} \n
 message: ${req.body.messageField}\n`,
 attachments: [
-    { filename: file.name.replace(/\s/g,'') , path: `/${file.name.replace(/\s/g,'')}`}
+    { filename: file.name.replace(/\s/g,'') , path: path }
 ]
 }
 transporter.sendMail(mailOptions,async (err,data)=>{
